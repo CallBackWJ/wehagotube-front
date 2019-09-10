@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../SearchBar'
+import Header from '../../../Containers/Header'
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const Template=styled.div`
 const PageTemplate = props => {
     return (
         <Template>
-            <SearchBar/>
+            <Header/>
             {props.children}
         </Template>
     );

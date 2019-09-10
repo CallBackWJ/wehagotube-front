@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Chat from "../Chat";
-
+import { useQuery } from "react-apollo-hooks";
+import { CHAT_LIST } from "../../../Graphql/queries";
+import {useYoutubeContext} from "../../../Contexts/YoutubeContext"
 const Root = styled.div`
   width: 100%;
   height: 100%;
@@ -56,45 +58,68 @@ const Send = styled.button`
 `;
 
 const ChatContainer = props => {
-  const dummyList = [
-    {
-      avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
-      name: "[강촌세무사무소]김더존",
-      comment: "안녕하세요, 방송 시작했네요",
-      me: false
-    },
-    {
-      avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
-      name: "[이더존 세무사무소]이더존",
-      comment: "방금 말한 증빙전표 정말 획기적이네요.. 영수증 모을 필요가 없겠네요",
-      me: false
-    },
-    {
-      avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
-      name: "[강촌세무사무소]김더존",
-      comment: "앞부분 못봤는데.. 모바일로 영수증을 촬영한다 는건가요?",
-      me: false
-    },
-    {
-      avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
-      name: "[좋은상사]박더존",
-      comment: "네, 맞아요. 카메라로 영수증찍으면 증빙으로 인식돼요",
-      me: true
-    }
-  ];
 
-  const chatData = dummyList.map((data,index) => (
-    <Chat key={index} avatar={data.avatar} name={data.name} comment={data.comment} me={data.me}/>
+  let {chatId,chatTime,setChatTime}=useYoutubeContext();
+
+
+  // setTimeout(()=>{
+  //   console.log("tt:",chatTime);
+  //   setChatTime(chatTime+1);
+  // },2000);
+  const { data, error, loading } = useQuery(CHAT_LIST,{
+    variables: { chatId},
+    fetchPolicy:"network-only"
+  });
+  if (loading) return "";
+  if (error) return "";
+  console.log("data", data);
+  let chatData
+  if(data.chatList)
+   chatData = data.chatList.map((chat,idx) => (
+    <Chat key={idx} avatar={chat.avatar} name={chat.name} comment={chat.message} me={chat.author}/>
   ));
+  // const dummyList = [
+  //   {
+  //     avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
+  //     name: "[강촌세무사무소]김더존",
+  //     comment: "안녕하세요, 방송 시작했네요",
+  //     me: false
+  //   },
+  //   {
+  //     avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
+  //     name: "[이더존 세무사무소]이더존",
+  //     comment: "방금 말한 증빙전표 정말 획기적이네요.. 영수증 모을 필요가 없겠네요",
+  //     me: false
+  //   },
+  //   {
+  //     avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
+  //     name: "[강촌세무사무소]김더존",
+  //     comment: "앞부분 못봤는데.. 모바일로 영수증을 촬영한다 는건가요?",
+  //     me: false
+  //   },
+  //   {
+  //     avatar: "https://png.pngtree.com/svg/20170331/1ec867769d.svg",
+  //     name: "[좋은상사]박더존",
+  //     comment: "네, 맞아요. 카메라로 영수증찍으면 증빙으로 인식돼요",
+  //     me: true
+  //   }
+  // ];
 
+  // const chatData = dummyList.map((data,index) => (
+  //   <Chat key={index} avatar={data.avatar} name={data.name} comment={data.comment} me={data.me}/>
+  // ));
+
+  const handleClick=()=>{
+    setChatTime(0);
+  }
   return (
     <Root>
       실시간 채팅
       <ChatList>{chatData}</ChatList>
       <ChatInput>
         <Emoticon />
-        <Input />
-        <Send>전송</Send>
+        <Input  />
+        <Send onClick={handleClick}>전송</Send>
       </ChatInput>
     </Root>
   );
