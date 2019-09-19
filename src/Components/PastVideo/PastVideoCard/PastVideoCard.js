@@ -58,9 +58,14 @@ const LookupCounter = styled.div`
 `;
 
 const PastVideoCard = props => {
-  const { setVideoId } = useYoutubeContext();
+  const { setVideoId,setChatId,setTitle,setDesc,setState,setViewCount} = useYoutubeContext();
   const handleClick = () => {
     setVideoId(props.videoId);
+    setChatId("");
+    setTitle(props.title);
+    setDesc(props.description);
+    setState("completed");
+    setViewCount(props.viewCount);
     props.history.push("/view");
   };
   return (

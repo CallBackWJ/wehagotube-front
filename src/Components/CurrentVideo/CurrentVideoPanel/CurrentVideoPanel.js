@@ -51,11 +51,14 @@ const ButtonImg = styled.div`
   background-size: cover;
 `;
 const CurrentVideoPanel = props => {
-  const { setVideoId,setChatId } = useYoutubeContext();
+  const { setVideoId,setChatId,setTitle,setDesc,setState,setViewCount } = useYoutubeContext();
   const handleClick = () => {
     setVideoId(props.videoId);
     setChatId(props.activeLiveChatId);
-
+    setTitle(props.title);
+    setDesc(props.description);
+    setState(props.liveBroadcastContent);
+    setViewCount(props.concurrentViewers);
     props.history.push("/view" );
   };
   return (

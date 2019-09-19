@@ -19,10 +19,16 @@ const Context=styled.span`
 color:gray;
 `
 const CheckPoint = props => {
+    const timeFormat = time =>
+    `${
+      time / 3600 > 9 ? Math.floor(time / 3600) : `0${Math.floor(time / 3600)}`
+    }:${time / 60 > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${
+      time % 60 > 9 ? Math.floor(time % 60) : `0${Math.floor(time % 60)}`
+    }`;
     return (
         <Root>
-            <Time>00:00</Time>
-            <Context>민원증명 발급 신청하기</Context>
+            <Time>{timeFormat(props.time).substring(3)}</Time>
+            <Context>{props.desc}</Context>
         </Root>
     );
 };

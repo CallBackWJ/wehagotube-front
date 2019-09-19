@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PageTemplate from "../Components/Common/PageTemplate";
 import ContainerTemplate from "../Components/Common/ContainerTemplate";
 import SearchVideoContainer from "../Components/SearchVideo/SearchVideoContainer";
+
 const SearchPage = props => {
   return (
     <PageTemplate>

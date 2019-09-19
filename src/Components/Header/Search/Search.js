@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import img from "../../../Images/search.png";
+import useInput from "../../../Hooks/useInput";
+import {useAdminContext} from "../../../Contexts/AdminContext"
 const Root = styled.div`
   display: inline;
   margin-right: 1rem;
@@ -29,14 +31,18 @@ const Input = styled.input`
 `;
 
 const Search = props => {
+  const keyword=useInput("");
+  const {setVideoType,setKeyword}=useAdminContext();
     const handleSearch = e => {
         if (e.key === "Enter") {
+          setVideoType("completed");
+          setKeyword(keyword.value);
           props.history.push("/search");
         }
       };
     return (
         <Root>
-            <Input placeholder="검색어를 입력해주세요" onKeyPress={handleSearch} />
+            <Input placeholder="검색어를 입력해주세요" value={keyword.value } onChange={keyword.onChange}onKeyPress={handleSearch} />
             <Button/>
         </Root>
     );

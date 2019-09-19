@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {useYoutubeContext} from "../../Contexts/YoutubeContext"
+import { useYoutubeContext } from "../../Contexts/YoutubeContext";
 const Descript = styled.div`
   flex: 6;
   display: flex;
@@ -46,24 +46,22 @@ const Viewers = styled.div`
   margin-top: auto;
 `;
 const VideoDescript = props => {
-
-  
-  const {seek}=useYoutubeContext();
-  console.log("seek:",seek);
-
+  const { title,desc,state,viewCount } = useYoutubeContext();
 
   return (
     <Descript>
-      <StateBar state={props.liveBroadcastContent}>
-        {props.liveBroadcastContent === "live"
+      <StateBar state={state}>
+        {state === "live"
           ? "실시간 스트리밍중"
-          : props.liveBroadcastContent === "upcoming"
+          : state === "upcoming"
           ? "방송 준비중"
           : "방송 종료"}
       </StateBar>
-      <MainTitle>{props.title}</MainTitle>
-      <SubTitle>{props.description}</SubTitle>
-      <Viewers>{props.concurrentViewers}명 시청중</Viewers>
+      <MainTitle>{title}</MainTitle>
+      <SubTitle>{desc}</SubTitle>
+      <Viewers>{state==="live"?`${viewCount}명 시청중`:state === "upcoming"
+          ? "방송 준비중"
+          : `조회수 : ${viewCount}`}</Viewers>
     </Descript>
   );
 };

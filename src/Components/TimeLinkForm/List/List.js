@@ -8,7 +8,7 @@ const Root =styled.div`
 const List = props => {
     return (
         <Root>
-             {props.children}
+           {props.children}
         </Root>
     );
 };

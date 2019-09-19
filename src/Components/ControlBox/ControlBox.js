@@ -56,8 +56,7 @@ const Menu = styled.div`
 `;
 
 const MenuItem = styled.div`
-flex:1
-
+flex:1;
 color:white;
 background-color: ${props => (props.select ? "#0090f5" : "darkgray")};
 text-align: center;

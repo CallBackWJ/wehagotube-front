@@ -2,7 +2,9 @@ import React from "react";
 import YouTube from "react-youtube";
 import PropTypes from "prop-types";
 import { useYoutubeContext } from "../../Contexts/YoutubeContext";
+
 const Youtube = props => {
+
   const opts = {
     height: "500",
     width: "900",
@@ -11,9 +13,12 @@ const Youtube = props => {
     }
   };
 
-  const { setSeek,videoId } = useYoutubeContext();
+  const { setSeek,videoId,setYoutube } = useYoutubeContext();
 
-  const onReady = event => {};
+  const onReady = event => {
+    setYoutube(event.target);
+    
+  };
   const onStateChange = e => {
     if (e.data === 2) {
       setSeek(e.target.getCurrentTime());

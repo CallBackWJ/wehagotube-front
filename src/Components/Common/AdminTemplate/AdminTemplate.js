@@ -20,8 +20,11 @@ const List = styled.div`
 const AdminTemplate = props => {
   return (
     <Root>
-      <Contorller>{props.children[0]}</Contorller>
-      <List>{props.children[1]}</List>
+      <Contorller>
+        {props.children[0]}
+        {props.children[1]}
+      </Contorller>
+      <List>{props.children[2]}</List>
     </Root>
   );
 };

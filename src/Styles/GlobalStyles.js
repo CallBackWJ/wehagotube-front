@@ -5,7 +5,9 @@ export default createGlobalStyle`
     ${reset};
     * {
         box-sizing:border-box;
-      
+        ::-webkit-scrollbar{
+            display: none;
+        }
     }
     body { 
         line-height:1.4em;
@@ -15,4 +17,5 @@ export default createGlobalStyle`
         border: solid 0.5px gainsboro;
     }
 
+    
 `;

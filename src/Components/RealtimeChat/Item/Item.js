@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-//채팅 스타일 시작
 const Root = styled.div`
   width: 100%;
   display: flex;
@@ -19,6 +18,7 @@ const Avatar = styled.img`
   background-size: cover;
   width: 2rem;
   height: 2rem;
+  border-radius: 1rem;
   margin: ${props => (props.me ? "0 0 0 0.5rem" : "0 0.5rem 0 0")};
 `;
 const Name = styled.label`
@@ -51,14 +51,11 @@ const Message = styled.div`
   border-radius: 0.3rem;
   box-shadow: 0 2px 2px 0 rgb(230, 230, 230);
 `;
-const Chat = props => {
+const Item = props => {
   return (
     <Root>
       <User me={props.me}>
-        <Avatar
-          me={props.me}
-          src={props.avatar}
-        />
+        <Avatar me={props.me} src={props.avatar} />
         <Name me={props.me}>{props.name}</Name>
       </User>
       <Comment me={props.me}>
@@ -69,6 +66,6 @@ const Chat = props => {
   );
 };
 
-Chat.propTypes = {};
+Item.propTypes = {};
 
-export default Chat;
+export default Item;

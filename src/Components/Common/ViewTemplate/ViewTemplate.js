@@ -13,9 +13,9 @@ const Video=styled.div`
 flex:1;
 `
 const Chat=styled.div`
-max-width:25rem;
+max-width:22rem;
+min-width:22rem;
 height:85vh;
-
 `
 
 const ViewTemplate = props => {

@@ -89,6 +89,8 @@ export const SEARCH_VIDEO = gql`
   }
 `;
 
+
+
 export const CREATE_TIMELINK = gql`
   mutation createTimeLink($videoId: String!, $time: Int!, $desc: String!) {
     createTimeLink(videoId: $videoId, time: $time, desc: $desc) {
@@ -121,6 +123,8 @@ export const SEARCH_TIMELINK = gql`
   }
 `;
 
+
+
 export const SINGLEUPLOAD = gql`
   mutation singleUpload($file: Upload!) {
     singleUpload(file: $file) {
@@ -138,5 +142,13 @@ export const CHAT_LIST = gql`
       message
       author
     }
+  }
+`;
+export const INSERT_CHAT = gql`
+  mutation insertChat(
+    $chatId: String!
+    $message: String!
+  ) {
+    insertChat(chatId: $chatId, message: $message)
   }
 `;

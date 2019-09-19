@@ -1,20 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import Youtube from "../../Components/Youtube";
 import ScheduleForm from "../../Components/ScheduleForm";
 import ControlBox from "../../Components/ControlBox";
-import TimeLink from "../../Containers/TimeLink";
+import TimeLinkForm from "../TimeLinkForm";
 
 const VideoController = props => {
   return (
-    <>
-      <Youtube />
-      <ControlBox>
-        <ScheduleForm />
-        <TimeLink />
-      </ControlBox>
-    </>
+    <ControlBox>
+      <ScheduleForm />
+      <TimeLinkForm />
+    </ControlBox>
   );
 };
 

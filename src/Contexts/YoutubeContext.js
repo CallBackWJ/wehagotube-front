@@ -10,7 +10,14 @@ export const YoutubeProvider = ({ children }) => {
   const [youtube, setYoutube] = useState({});
   const [videoId, setVideoId] = useState("");
   const [chatId, setChatId] = useState("");
-  const [chatTime,setChatTime]=useState(1);
+
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [time, setTime] = useState("");
+  const [state, setState] = useState("");
+  const [viewCount, setViewCount] = useState("");
+  
 
   return (
     <YoutubeContext.Provider
@@ -23,8 +30,20 @@ export const YoutubeProvider = ({ children }) => {
         setVideoId,
         chatId,
         setChatId,
-        chatTime,
-        setChatTime
+
+        thumbnail,
+        setThumbnail,
+        title,
+        setTitle,
+        desc,
+        setDesc, 
+        time,
+        setTime,
+        state,
+        setState,
+        viewCount, 
+        setViewCount,
+
       }}
     >
       {children}

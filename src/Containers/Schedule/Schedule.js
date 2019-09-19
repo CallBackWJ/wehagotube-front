@@ -19,6 +19,15 @@ const Schedule = props => {
     />
   ));
 
+  while(cards.length<5){
+    cards.push(  <Card
+      key={cards.length}
+      videoId=""
+      title=""
+      description=""
+      scheduledStartTime=""
+    />);
+  }
   return <List>{cards}</List>;
 };
 

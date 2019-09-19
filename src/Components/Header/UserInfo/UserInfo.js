@@ -61,7 +61,7 @@ const UserInfo = props => {
     console.log("google::",response)
   };
 
-  const { data, loading } = useQuery(ME);
+  const { data, loading } = useQuery(ME,{pollInterval: 10000});
 
   return (
     <div>

@@ -1,1 +1,1 @@
-export {default} from './TimeLink'
+export {default} from "./TimeLink"

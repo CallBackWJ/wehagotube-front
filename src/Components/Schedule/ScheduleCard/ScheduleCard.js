@@ -23,14 +23,12 @@ const Descript = styled.div`
   background: rgb(238, 238, 238);
   display: flex;
   flex-direction: column;
-  
+
   justify-content: center;
   align-items: center;
   padding: 1rem;
 `;
-const MainTitle = styled.div`
-
-`;
+const MainTitle = styled.div``;
 const SubTitle = styled.div`
 font-size:0.8rem;
 text-align : center
@@ -41,34 +39,44 @@ const ScheduleTime = styled.div`
   color: rgb(47, 133, 246);
 `;
 
-const dateFormat=(UTC)=>{
-  const schedule=new Date(UTC);
-  const days="일월화수목금토";
-  const year=schedule.getFullYear();
-  const month=Number(schedule.getMonth())+1;
-  const date=schedule.getDate();
-  const day=days[schedule.getDay()];
-  const hours=(Number(schedule.getHours())>=12)?"PM "+(Number(schedule.getHours())-12):"AM "+schedule.getHours();
-  const minutes=schedule.getMinutes();
+const dateFormat = UTC => {
+  const schedule = new Date(UTC);
+  const days = "일월화수목금토";
+  const year = schedule.getFullYear();
+  const month = Number(schedule.getMonth()) + 1;
+  const date = schedule.getDate();
+  const day = days[schedule.getDay()];
+  const hours =
+    Number(schedule.getHours()) >= 12
+      ? "PM " + (Number(schedule.getHours()) - 12)
+      : "AM " + schedule.getHours();
+  const minutes =(schedule.getMinutes()>9)?schedule.getMinutes():"0"+schedule.getMinutes();
 
   return {
-    printDate:()=>year+"."+month+"."+date+" ("+day+")",
-    printTime:()=>hours+":"+minutes
-  }
-}
-
+    printDate: () => year + "." + month + "." + date + " (" + day + ")",
+    printTime: () => hours + ":" + minutes
+  };
+};
 
 const ScheduleCard = props => {
-
-  const schedule=dateFormat(props.scheduledStartTime);
+  if (!props.videoId)
+    return (
+      <Card>
+        <ScheduleDate >일정 없음</ScheduleDate>
+        <Descript>
+          <MainTitle />
+          <SubTitle />
+          <ScheduleTime />
+        </Descript>
+      </Card>
+    );
+  const schedule = dateFormat(props.scheduledStartTime);
   return (
     <Card>
       <ScheduleDate>{schedule.printDate()}</ScheduleDate>
       <Descript>
         <MainTitle>{props.title}</MainTitle>
-        <SubTitle>
-        {props.description}
-        </SubTitle>
+        <SubTitle>{props.description}</SubTitle>
         <ScheduleTime>{schedule.printTime()}</ScheduleTime>
       </Descript>
     </Card>
